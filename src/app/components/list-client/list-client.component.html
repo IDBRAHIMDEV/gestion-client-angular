@@ -32,7 +32,7 @@
                         <a routerLink="" class="btn btn-warning mr-1 btn-sm">
                             <i class="fa fa-pencil"></i>
                         </a>
-                        <button class="btn btn-sm btn-danger">
+                        <button (click)="destroyClient(client.id)" class="btn btn-sm btn-danger">
                             <i class="fa fa-trash"></i>
                         </button>
                     </td>

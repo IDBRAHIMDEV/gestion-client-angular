@@ -2,6 +2,8 @@ import { ClientService } from './../../services/client.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add-client',
@@ -18,7 +20,10 @@ export class AddClientComponent implements OnInit {
     balance: new FormControl(0, Validators.pattern('[0-9]*')),
   })
 
-  constructor(private router: Router, private clientService: ClientService) { }
+  constructor(
+    private toastr: ToastrService,
+    private router: Router, 
+    private clientService: ClientService) { }
 
   ngOnInit(): void {
   }
@@ -30,8 +35,13 @@ export class AddClientComponent implements OnInit {
      } 
 
      this.clientService.save(this.clientForm.value)
-         .then(() => this.router.navigateByUrl('/clients'))
-         .catch(err => console.error(err))
+         .then(() => {
+           this.toastr.success("le client à été crée avec Succès", "Success", {
+            positionClass: 'toast-bottom-left'	
+           })
+           this.router.navigateByUrl('/clients')
+          })
+         .catch(err => this.toastr.error(err.message, "Error"))
   }
 
 }
