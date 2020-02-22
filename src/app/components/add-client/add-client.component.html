@@ -1,1 +1,40 @@
-<p>add-client works!</p>
+<div class="row my-4">
+    <div class="col-md-6">
+        <h1>New client</h1>
+    </div>
+    <div class="col-md-6 text-right">
+        <a routerLink="/clients" class="btn btn-link">
+            <i class="fa fa-arrow-left"></i> Back to List
+        </a>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-6 mx-auto">
+        <form action="">
+            <div class="form-group">
+                <label for="firstName">firstName</label>
+                <input id="firstName" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="lastName">lastName</label>
+                <input id="lastName" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="phone">phone</label>
+                <input id="phone" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input id="email" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="balance">balance</label>
+                <input id="balance" type="text" class="form-control">
+            </div>
+            <button class="btn btn-block btn-primary">
+                <i class="fa fa-send"></i> Add Client
+            </button>
+        </form>
+    </div>
+</div>
