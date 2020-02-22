@@ -29,7 +29,7 @@
                     <td>Phone {{ client.phone }} - Email {{ client.email }}</td>
                     <td>{{ client.balance }}</td>
                     <td>
-                        <a routerLink="" class="btn btn-warning mr-1 btn-sm">
+                        <a [routerLink]="['/clients', client.id, 'edit']" class="btn btn-warning mr-1 btn-sm">
                             <i class="fa fa-pencil"></i>
                         </a>
                         <button (click)="destroyClient(client.id)" class="btn btn-sm btn-danger">

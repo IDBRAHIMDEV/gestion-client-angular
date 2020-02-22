@@ -27,4 +27,12 @@ export class ClientService {
   delete(id: string) {
     return this.afs.collection('clients').doc(id).delete();
   }
+
+  getOne(id: string) {
+    return this.afs.collection('clients').doc(id).valueChanges()
+  }
+
+  update(data: Client) {
+    return this.afs.collection('clients').doc(data.id).update(data);
+  }
 }
