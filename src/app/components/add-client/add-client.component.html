@@ -11,28 +11,52 @@
 
 <div class="row mt-3">
     <div class="col-md-6 mx-auto">
-        <form action="">
+        <form [formGroup]="clientForm" (submit)="persistClient()">
             <div class="form-group">
                 <label for="firstName">firstName</label>
-                <input id="firstName" type="text" class="form-control">
+                <input autocomplete="off" formControlName="firstName" id="firstName" type="text" class="form-control">
+                
+                <div *ngIf="clientForm.get('firstName').invalid && clientForm.get('firstName').touched" class="alert alert-warning">
+                    <div *ngIf="clientForm.get('firstName').errors.required">Ce champ est Obligatoire !</div>
+                    <div *ngIf="clientForm.get('firstName').errors.minlength">Ce champ doit avoir au moins 3 caractères !</div>
+                </div>
+
             </div>
             <div class="form-group">
                 <label for="lastName">lastName</label>
-                <input id="lastName" type="text" class="form-control">
+                <input formControlName="lastName" id="lastName" type="text" class="form-control">
+                <div *ngIf="clientForm.get('lastName').invalid && clientForm.get('lastName').touched" class="alert alert-warning">
+                    <div *ngIf="clientForm.get('lastName').errors.required">Ce champ est Obligatoire !</div>
+                   
+                </div>
             </div>
             <div class="form-group">
                 <label for="phone">phone</label>
-                <input id="phone" type="text" class="form-control">
+                <input formControlName="phone" id="phone" type="text" class="form-control">
+                <div *ngIf="clientForm.get('phone').invalid && clientForm.get('phone').touched" class="alert alert-warning">
+                    <div *ngIf="clientForm.get('phone').errors.required">Ce champ est Obligatoire !</div>
+                   
+                </div>
             </div>
             <div class="form-group">
                 <label for="email">email</label>
-                <input id="email" type="text" class="form-control">
+                <input formControlName="email" id="email" type="text" class="form-control">
+                <div *ngIf="clientForm.get('email').invalid && clientForm.get('email').touched" class="alert alert-warning">
+                    <div *ngIf="clientForm.get('email').errors.required">Ce champ est Obligatoire !</div>
+                    <div *ngIf="clientForm.get('email').errors.email">Ce champ doit être une adresse email !</div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="balance">balance</label>
-                <input id="balance" type="text" class="form-control">
+                <input formControlName="balance" id="balance" type="number" class="form-control">
+                <div *ngIf="clientForm.get('balance').invalid && clientForm.get('balance').touched" class="alert alert-warning">
+                    <div *ngIf="clientForm.get('balance').errors.pattern">Ce champ ne respect pas notre stucture !</div>
+                   
+                </div>
             </div>
-            <button class="btn btn-block btn-primary">
+            
+            
+            <button [disabled]="clientForm.invalid" class="btn btn-block btn-success">
                 <i class="fa fa-send"></i> Add Client
             </button>
         </form>

@@ -1,3 +1,4 @@
+import { Client } from './../models/client';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -10,5 +11,9 @@ export class ClientService {
 
   _getAll() {
     return this.afs.collection('clients').valueChanges();
+  }
+
+  save(data: Client) {
+    return this.afs.collection('clients').add(data);
   }
 }
