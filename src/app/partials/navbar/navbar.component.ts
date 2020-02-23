@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  
+  currentUser = null;
 
   constructor(
     private toastr: ToastrService,
@@ -17,6 +19,9 @@ export class NavbarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+
+    this.authService.userAuthenticated()
+        .subscribe(user => this.currentUser = user)
   }
 
   logout() {
