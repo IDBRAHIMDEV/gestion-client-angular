@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-client.component.css']
 })
 export class ListClientComponent implements OnInit {
-  
+
+  total: number = 0;
   search: string = "";
   clients: Client[] = [];
   oldClients: Client[] = [];
@@ -26,7 +27,7 @@ export class ListClientComponent implements OnInit {
     this.clientService._getAll()
         .subscribe((res: Client[]) => {
           this.oldClients = this.clients = res
-          console.log(res)
+          this.totalBalance();
         })
   }
 
@@ -44,6 +45,7 @@ export class ListClientComponent implements OnInit {
 
      if(!this.search) {
        this.clients = this.oldClients;
+       this.totalBalance();
        return;
      }
 
@@ -52,6 +54,15 @@ export class ListClientComponent implements OnInit {
           client.lastName.includes(this.search) || 
           client.phone.includes(this.search) || 
           client.email.includes(this.search))
+
+          this.totalBalance();
+     
+  }
+
+  totalBalance() {
+    this.total = this.clients.reduce((total, client) => {
+      return total + client.balance;
+    }, 0)
   }
 
 }
